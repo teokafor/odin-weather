@@ -12,3 +12,7 @@ async function getWeatherDataByLocation(query) {
 }
 
 export { getWeatherDataByLocation };
+
+
+
+// TODO: Handle c to f

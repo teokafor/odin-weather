@@ -1,11 +1,8 @@
-
-// Refactor all necessary doc grabs to initialize function?
-const todayContainer = document.querySelector('.today');
+let isFahrenheit = false;
 
 function drawAll(json) {
   drawTodayCell(json);
 }
-
 
 
 const mainContainer = document.querySelector('.main-container');
@@ -32,4 +29,4 @@ function drawTodayCell(json) {
 
 
 
-export { drawAll };
+export { drawAll, isFahrenheit };
