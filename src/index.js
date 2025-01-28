@@ -1,5 +1,10 @@
-// import "./styles.css";
+import "./styles.css";
 import { getWeatherDataByLocation } from "./dataController.js";
+import { drawAll } from "./renderController.js";
 
 
-//getWeatherDataByLocation('asdaseretgrgswrf');
+getWeatherDataByLocation('dallas').then(json => {
+  console.log(json);
+  drawAll(json);
+});
+
