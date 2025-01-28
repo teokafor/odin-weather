@@ -1,2 +1,5 @@
 // import "./styles.css";
-// import { } from "./abc.js";
+import { getWeatherDataByLocation } from "./dataController.js";
+
+
+//getWeatherDataByLocation('asdaseretgrgswrf');
