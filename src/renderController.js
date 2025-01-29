@@ -2,6 +2,8 @@ import { getWeatherDataByLocation, setTemperatures } from "./dataController.js";
 import { iconEnum } from "./iconsEnum.js";
 import { getDayString, getMonthString } from "./calendarFormatting.js";
 
+const mainContainer = document.querySelector('.main-container');
+
 let temperatures = {};
 let json = {};
 
@@ -33,17 +35,13 @@ submitButton.addEventListener('click', (e) => {
 });
 
 
-const mainContainer = document.querySelector('.main-container');
 
 function drawTodayCell(json, temps) {
     const todayElement = document.createElement('div');
     todayElement.classList.add('today');
     
     let todaysDate = new Date(json['days'][0]['datetimeEpoch'] * 1000);
-    let todaysTime = todaysDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' }); 
-
-  console.log(todaysDate);
-  
+    let todaysTime = todaysDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });   
 
     todayElement.innerHTML = `<div class="today-left">
                     <div class="today-left-left">
@@ -60,7 +58,14 @@ function drawTodayCell(json, temps) {
     mainContainer.appendChild(todayElement);
 }
 
+function clearAll() {
+  while(mainContainer.lastChild) {
+    mainContainer.removeChild(mainContainer.firstChild);
+  }
+}
+
 function drawAll(json, temps) {
+    clearAll();
     drawTodayCell(json, temps);
 }
   
