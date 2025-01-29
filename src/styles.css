@@ -1,6 +1,48 @@
+
 .today {
     width: 720px;
     height: 160px;
     border-radius: 16px;
     background-color: grey;
+    align-items: center;
+    padding: 16px 32px;
+}
+
+.today-left, .today {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    color: white;
+}
+
+.today-left-left, .today-left-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.today-date {
+    font-size: 16px;
+}
+
+.today-date p {
+    margin: 0;
+}
+
+.today-left-right {
+    text-align: right;
+    justify-content: space-between;
+}
+.today-temp {
+    font-size: 64px;
+}
+
+.today-lo-hi, .today-time {
+    font-size: 32px;
+}
+
+.today-icon {
+    width: 128px;
+    position: relative;
+    bottom: 16px;
 }

@@ -20,7 +20,7 @@ function setTemperatures(json) {
 
     for (let key in temperatures) {
         if (temperatures.hasOwnProperty(key)) {
-            temperatures[key] = [Math.round(temperatures[key]), Math.round((temperatures[key] - 32) / 1.8)];
+            temperatures[key] = [`${Math.round(temperatures[key])}°`, `${Math.round((temperatures[key] - 32) / 1.8)}°`];
         }
     }
     return temperatures;

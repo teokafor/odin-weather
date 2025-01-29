@@ -1,4 +1,6 @@
 import { getWeatherDataByLocation, setTemperatures } from "./dataController.js";
+import { iconEnum } from "./iconsEnum.js";
+import { getDayString, getMonthString } from "./calendarFormatting.js";
 
 let temperatures = {};
 let json = {};
@@ -36,20 +38,22 @@ const mainContainer = document.querySelector('.main-container');
 function drawTodayCell(json, temps) {
     const todayElement = document.createElement('div');
     todayElement.classList.add('today');
+    
+    let todaysDate = new Date(json['days'][0]['datetimeEpoch']);
+    let todaysTime = todaysDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' }); 
 
     todayElement.innerHTML = `<div class="today-left">
                     <div class="today-left-left">
-                        <div class="today-icon">${json['days'][0]['icon']}</div>
-                        <div class="today-date">${json['days'][0]['datetimeEpoch']}</div>
+                        <img class="today-icon" src="${iconEnum[json['days'][0]['icon']]}">
+                        <div class="today-date">${getDayString(todaysDate.getDay())}<p></p>${getMonthString(todaysDate.getMonth())} ${todaysDate.getDay()}</div>
                     </div>
                     <div class="today-left-right">
                         <div class="today-temp">${temps['todaysTemp'][isFahrenheit]}</div>
                         <div class="today-lo-hi">${temps['todaysTempMin'][isFahrenheit]}/${temps['todaysTempMax'][isFahrenheit]}</div>
-                        <div class="today-time">${json['days'][0]['datetimeEpoch']}</div>
+                        <div class="today-time">${todaysTime}</div>
                     </div>
                 </div>
                 <div class="today-right"></div>`;
-
     mainContainer.appendChild(todayElement);
 }
 
