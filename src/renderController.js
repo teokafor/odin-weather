@@ -3,8 +3,8 @@ import { getWeatherDataByLocation, setTemperatures } from "./dataController.js";
 let temperatures = {};
 let json = {};
 
-async function initializeDOM() {
-  getWeatherDataByLocation('dallas').then(data => {
+async function initializeDOM(query = 'Dallas, TX') {
+  getWeatherDataByLocation(query).then(data => {
     console.log('api return');
     
     json = data;
@@ -22,6 +22,13 @@ temperatureUnitButton.addEventListener('click', () => {
     drawAll(json, temperatures);    
 });
 
+const searchBar = document.querySelector('.search');
+const submitButton = document.querySelector('.hidden-submit');
+
+submitButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  initializeDOM(searchBar.value);
+});
 
 
 const mainContainer = document.querySelector('.main-container');
@@ -51,4 +58,4 @@ function drawAll(json, temps) {
 }
   
 
-export { drawAll, isFahrenheit, initializeDOM };
+export { initializeDOM };

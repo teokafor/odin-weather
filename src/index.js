@@ -1,6 +1,6 @@
 import "./styles.css";
 import { getWeatherDataByLocation, setTemperatures } from "./dataController.js";
-import { drawAll, initializeDOM, isFahrenheit } from "./renderController.js";
+import { initializeDOM } from "./renderController.js";
 
 let temperatures = {};
 
