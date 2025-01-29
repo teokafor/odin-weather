@@ -11,7 +11,33 @@ async function getWeatherDataByLocation(query) {
   }
 }
 
-export { getWeatherDataByLocation };
+function setTemperatures(json) {
+    let temperatures = {
+        'todaysTemp': json['days'][0]['temp'],
+        'todaysTempMin': json['days'][0]['tempmin'],
+        'todaysTempMax': json['days'][0]['tempmax']
+    };
+
+    /*
+     We don't necessarily need to re-calculate the f/c value every time
+     we want to display it, since the value will not change until the user
+     selects a new location. As such, we can reduce headache by building
+     a static object with variable names, and their respective f/c temps.
+
+     build base object (done! great work!)
+     map values of object into array of f/c
+     
+    */
+
+    for (let key in temperatures) {
+        if (temperatures.hasOwnProperty(key)) {
+            temperatures[key] = [Math.round(temperatures[key]), Math.round((temperatures[key] - 32) / 1.8)];
+        }
+    }
+    return temperatures;
+}
+
+export { getWeatherDataByLocation, setTemperatures };
 
 
 

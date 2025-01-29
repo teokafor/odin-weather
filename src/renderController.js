@@ -1,13 +1,32 @@
-let isFahrenheit = false;
+import { getWeatherDataByLocation, setTemperatures } from "./dataController.js";
 
-function drawAll(json) {
-  drawTodayCell(json);
+let temperatures = {};
+let json = {};
+
+async function initializeDOM() {
+  getWeatherDataByLocation('dallas').then(data => {
+    console.log('api return');
+    
+    json = data;
+
+    temperatures = setTemperatures(json);
+    drawAll(json, temperatures)
+  });
 }
+
+
+let isFahrenheit = 0; // 0 = yes, 1 = no
+const temperatureUnitButton = document.querySelector('.temperature-unit-button');
+temperatureUnitButton.addEventListener('click', () => {
+    isFahrenheit = isFahrenheit === 0 ? 1 : 0;
+    drawAll(json, temperatures);    
+});
+
 
 
 const mainContainer = document.querySelector('.main-container');
 
-function drawTodayCell(json) {
+function drawTodayCell(json, temps) {
     const todayElement = document.createElement('div');
     todayElement.classList.add('today');
 
@@ -17,8 +36,8 @@ function drawTodayCell(json) {
                         <div class="today-date">${json['days'][0]['datetimeEpoch']}</div>
                     </div>
                     <div class="today-left-right">
-                        <div class="today-temp">${json['days'][0]['temp']}</div>
-                        <div class="today-lo-hi">${json['days'][0]['tempmin']}/${json['days'][0]['tempmax']}</div>
+                        <div class="today-temp">${temps['todaysTemp'][isFahrenheit]}</div>
+                        <div class="today-lo-hi">${temps['todaysTempMin'][isFahrenheit]}/${temps['todaysTempMax'][isFahrenheit]}</div>
                         <div class="today-time">${json['days'][0]['datetimeEpoch']}</div>
                     </div>
                 </div>
@@ -27,6 +46,9 @@ function drawTodayCell(json) {
     mainContainer.appendChild(todayElement);
 }
 
+function drawAll(json, temps) {
+    drawTodayCell(json, temps);
+}
+  
 
-
-export { drawAll, isFahrenheit };
+export { drawAll, isFahrenheit, initializeDOM };
