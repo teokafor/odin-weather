@@ -8,6 +8,7 @@ async function getWeatherDataByLocation(query) {
     return json;
   } catch (err) {
     console.log(err);
+    throw new Error(err);
   }
 }
 
