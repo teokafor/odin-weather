@@ -44,6 +44,8 @@ function drawTodayCell(json, temps) {
     let todaysDate = new Date(json['days'][0]['datetimeEpoch'] * 1000);
     let todaysTime = todaysDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });   
 
+    const [city, state] = json['resolvedAddress'].split(',');
+
     todayElement.innerHTML = `<div class="today-left">
                     <div class="today-left-left">
                         <img class="today-icon" src="${iconEnum[json['days'][0]['icon']]}">
@@ -55,7 +57,7 @@ function drawTodayCell(json, temps) {
                         <div class="today-time">${todaysTime}</div>
                     </div>
                 </div>
-                <div class="today-right"></div>`;
+                <div class="today-right">${city}, ${state}</div>`;
     mainContainer.appendChild(todayElement);
 }
 

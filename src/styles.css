@@ -98,3 +98,10 @@ body {
 .today-icon {
     width: 128px;
 }
+
+.today-right {
+    align-self: flex-start;
+    font-size: 48px;
+    max-width: 350px;
+    text-align: right;
+}
