@@ -1,13 +1,14 @@
 body {
-    /* width: 720px; */
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
     align-items: center;
+    background-color: rgb(43, 43, 43);
 }
 
 #content {
     width: 720px;
+    position: relative;
+    top: 120px;
 }
 
 .search {
