@@ -39,8 +39,11 @@ function drawTodayCell(json, temps) {
     const todayElement = document.createElement('div');
     todayElement.classList.add('today');
     
-    let todaysDate = new Date(json['days'][0]['datetimeEpoch']);
+    let todaysDate = new Date(json['days'][0]['datetimeEpoch'] * 1000);
     let todaysTime = todaysDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' }); 
+
+  console.log(todaysDate);
+  
 
     todayElement.innerHTML = `<div class="today-left">
                     <div class="today-left-left">
