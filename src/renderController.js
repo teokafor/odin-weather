@@ -22,6 +22,7 @@ async function initializeDOM(query = 'Dallas, TX') {
 let isFahrenheit = 0; // 0 = yes, 1 = no
 const temperatureUnitButton = document.querySelector('.temperature-unit-button');
 temperatureUnitButton.addEventListener('click', () => {
+    temperatureUnitButton.innerHTML = isFahrenheit === 0 ? 'C°' : 'F°';
     isFahrenheit = isFahrenheit === 0 ? 1 : 0;
     drawAll(json, temperatures);    
 });
